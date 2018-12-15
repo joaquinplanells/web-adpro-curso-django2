@@ -1,0 +1,22 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Contacto{% endblock %}
+
+{% block background %} {% load static %} {% static 'core/img/contact-bg.jpg' %} {% endblock %}
+
+{% block headers %}
+<h1>Juan Pérez</h1>
+<span class="subheading">Ingeniero Industrial</span>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="class col-lg-3 col-md-4 offset-lg-1">
+        <img class="img-fluid avatar" src="{% static 'core/img/contact-bg.jpg' %}" alt="">
+    </div>
+    <div class="class col-lg-7 col-md-8">
+        <h2>Contacto</h2>
+        <p>{% lorem how_many_paragraphs %}</p>
+    </div>
+</div>
+{% endblock %}

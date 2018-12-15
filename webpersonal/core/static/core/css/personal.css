@@ -1,0 +1,134 @@
+    /*  NOTA -> En el sistema de flexbox trabajamos en el eje horizontal y en el eje vertical. 
+                Cuando la propiedad 'flex-direction' es 'row', el eje principal es el horizontal y el
+                secundario es el vertical. 
+                Cuando la propiedad 'flex-direction' es 'column', el eje principal es el vertical y
+                el eje horizontal es el secundario. 
+                La propiedad 'justify-content' se aplica al eje principal, y la propiedad 'align-items' 
+                se aplica al eje secundario.
+                La propiedad 'align-self' alinea los elementos en el eje secundario de forma individual.
+    */
+    
+    
+    
+    
+    /*  display: 
+            flex ->             los elementos del contenedor se ordenan de izquierda a derecha en la misma fila
+                                el contenedor ocupa todo el ancho disponible.
+            inline-flex ->      los elementos del contenedor se ordenan de izquierda a derecha en la misma fila
+                                el contenedor ocupa solo el ancho total de los elementos contenidos.
+
+        flex-direction:
+            row ->              los elementos del contenedor se disponen en el eje horizontal de izquierda a
+                                derecha. Es el valor por defecto.
+            row-reverse ->      los elementos del contenedor se disponen en el eje horizontal de derecha a
+                                izquierda.
+            column ->           los elementos del contenedor se disponen en el eje vertical de arriba a abajo
+            column-reverse ->   los elementos del contenedor se disponen en el eje vertical de abajo a arriba
+
+        flex-wrap: 
+            nowrap ->           los elementos se salen del contenedor si no caben en el.
+            wrap ->             los elementos que no caben en eñ contenedor saltan a la siguiente linea.
+            wrap-reverse ->     los elementos que no caben en eñ contenedor saltan a la siguiente linea
+                                ordenados en sentido opuesto.
+        
+        justify-content:
+            flex-start ->       pone los elementos ordenados en el eje principal al comienzo (default).
+            flex-end ->         pone los elementos ordenados en el eje principal al final.
+            center ->           pone los elementos ordenados en el eje principal en el centro.
+            space-around ->     pone los elementos ordenados en el eje principal ocupando todo el espacio disponible con espacio 
+                                en los dos extremos.
+            space-between ->    pone los elementos ordenados en el eje principal ocupando todo el espacio disponible sin espacio
+                                en los extremos.
+
+        align-items:
+            stretch ->          pone los elementos ordenados en el eje secundario.
+            baseline ->         La altura de los elementos es la suya y se posicionan en la parte superior.
+            center ->           La altura de los elementos es la suya y se posicionan en la parte central.
+            flex-start ->       La altura de los elementos es la suya y se posicionan en la parte superior.
+            flex-end ->         La altura de los elementos es la suya y se posicionan en la parte inferior.
+
+        flex:
+        flex-grow:
+            v ->                valor de la base de reparto que se le asigna a cada elemento del contenedor
+                                para repartir el ancho disponible de este entre todos los elementos.
+
+    */
+
+
+
+
+
+/* vista flexbox1 */
+.contenedor-flexbox1 {
+    width: 100%;
+    min-height: 100px;
+    background-color: lightgrey;
+    padding: 10px;
+    font-family: sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid wheat;
+
+}
+
+.contenido-flexbox1 {
+    background-color: white;
+    min-height: 500px;
+    border: 1px solid gray;
+    padding: 10px;
+    flex-grow: 2;
+}
+
+.lateral-flexbox1 {
+    background-color: darkgray;
+    min-height: 500px;
+    padding: 10px;
+    flex-grow:0.5;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.anchocompleto {
+    width: 100%;
+}
+
+.boton {
+    padding: 10px;
+}
+
+
+
+/* vista flexbox2 */
+.contenedor-flexbox2 {
+    border: 20px solid wheat;
+    display: flex;
+    flex-direction: column-reverse;
+    /* 100% del viewport */
+    height: 100vh;
+}
+
+div[class*="item-"] {
+    background: orange;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid gray;
+    width: 100px;
+    flex: 1;
+}
+
+div[class*="item-"]:nth-child(2) {
+    background-color:black;
+    color: white;
+    /* flex:
+        1.5             los elementos del contenedor ocupan todo en ancho disponible de este, es decir, todo el espacio
+                        disponible se lo reparten a partes proporcionales a 1 menos el elemento 2 que recibe la parte
+                        proporcional de 1.5
+    */
+    flex: 1.5;
+}
+
