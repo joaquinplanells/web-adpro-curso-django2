@@ -1,0 +1,30 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Aviso{% endblock %}
+
+{% block content %}
+
+<section class="page-section about-heading">
+  <div class="container">
+    <div class="about-heading-content mbtm">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 mx-auto">
+          <div class="bg-faded rounded p-5 forced">
+            <h2>{{page.title}} </h2>
+            <p>
+              {{page.content|safe}}
+              {% if user.is_authenticated %}
+                <!-- admin:app_modelo_acción -->
+                <p>{{user}} <a href="{% url 'admin:pages_page_change' page.id %} ">Editar</a></p>
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

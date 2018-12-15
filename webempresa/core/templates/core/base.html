@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}{% endblock %} | La Caffettiera</title>
+
+    {% load static %}
+
+    <!-- Bootstrap -->
+    <link href="{% static 'core/vendor/bootstrap4.1.3/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Fuentes -->
+    <link href="{% static 'core/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">
+
+    <!-- Estilos -->
+    <link href="{% static 'core/css/business-casual.css' %}" rel="stylesheet">
+
+
+    <!-- DataTables -->
+    <link href="{% static 'core/vendor/datatable4/css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/datatable4/css/datatables.bootstrap4.min.css' %}" rel="stylesheet">
+
+    <!-- Alertify -->
+    <link href="{% static 'core/vendor/alertify/css/alertify.css' %}" rel="stylesheet">
+    <link href="{% static 'core/vendor/alertify/css/themes/bootstrap.css' %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Título de la página -->
+    <h1 class="site-heading text-center text-white d-none d-lg-block">
+      <span class="site-heading-upper text-primary mb-3">L'autentico caffè d'italia</span>
+      <span class="site-heading-lower">La Caffettiera</span>
+    </h1>
+
+    <!-- Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-lg-4" id="mainNav">
+      <div class="container">
+        <!-- Toggle-->
+        <a class="navbar-brand text-uppercase text-expanded font-weight-bold d-lg-none" href="{% url 'home' %}">
+          La Caffettiera
+        </a>
+        <!-- Button Toggle-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Menu -->
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item px-lg-4 {% if request.path == '/' %} active {% endif %} ">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="nav-item px-lg-4 {% if request.path == '/about' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'about' %}">Historia</a>
+            </li>
+            <li class="nav-item px-lg-4 {% if request.path == '/services' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'services' %}">Servicios</a>
+            </li>
+            <li class="nav-item px-lg-4 {% if request.path == '/store' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'store' %}">Visítanos</a>
+            </li>
+            <li class="nav-item px-lg-4 {% if request.path == '/contact' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'contact' %}">Contacto</a>
+            </li>
+            <li class="nav-item px-lg-4 {% if request.path == '/tabla' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'tabla' %}">Tabla</a>
+            </li>
+            <!-- Consideramos solo los 5 primeros caracteres del path -> '/blog' -->
+            <li class="nav-item px-lg-4 {% if request.path|slice:':5' == '/blog' %} active {% endif %}">
+              <a class="nav-link text-uppercase text-expanded" href="{% url 'blog' %}">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bloque contenido página -->
+    {% block content %} {% endblock %}
+
+
+    <!-- Pié de página -->
+    <footer class="footer text-faded text-center py-5">
+      <div class="container">
+        <!-- Redes sociales -->
+        <p class="m-0">
+          {% if LINK_TWITTER %}
+            <a href="{{LINK_TWITTER}}" class="link">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          {% endif %}
+          {% if LINK_FACEBOOK %}
+            <a href="{{LINK_FACEBOOK}}" class="link">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          {% endif %}
+          {% if LINK_INSTAGRAM %}
+            <a href="{{LINK_INSTAGRAM}}" class="link">
+              <span class="fa-stack fa-lg">
+                <i class="fa fa-circle fa-stack-2x"></i>
+                <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          {% endif %}
+        </p>
+        <!-- Requisitos legales -->
+        <p class="m-0 mbt">
+          <!-- Template Tags propios -->
+          {% load pages_extras %} <!-- cargamos el fichero pages_extras.py -->
+          {% get_page_list as page_list %} <!-- asociamos al template tag a una variable -->
+          {% for page in page_list %} <!-- iteramos el contenido de la variable -->
+            <a href="{% url 'page' page.id page.title|slugify %}" class="link">{{page.title}}</a> {% if not forloop.last %}-{% endif %}
+          {% endfor %}
+        </p>
+        <!-- Razón social -->
+        <p class="m-0 mbt1">
+          &copy; La Caffettiera 2018
+        </p>
+      </div>
+	  </footer>
+
+    <!-- Jquery -->
+    <script src="{% static 'core/vendor/jquery3.3.1/jquery.min.js' %}"></script>
+
+    <!-- Bootstrap -->
+    <script src="{% static 'core/vendor/bootstrap4.1.3/js/popper.min.js' %}"></script>
+    <script src="{% static 'core/vendor/bootstrap4.1.3/js/bootstrap.min.js' %}"></script>
+
+
+    <!-- DataTables  -->
+    <script src="{% static 'core/vendor/datatable4/js/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'core/vendor/datatable4/js/dataTables.bootstrap4.min.js' %}"></script>
+
+
+    <!-- Alertify -->
+    <script src="{% static 'core/vendor/alertify/js/alertify.min.js' %}"></script>
+
+    <!-- Configuración de los datatables -->
+    <script>
+      $(document).ready(function () {
+          $('.AllDataTables').DataTable({
+            language: {
+              "sProcessing": "Procesando...",
+              "sLengthMenu": "Mostrar _MENU_ registros",
+              "sZeroRecords": "No se encontraron resultados",
+              "sEmptyTable": "Ningún dato disponible en esta tabla",
+              "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix": "",
+              "sSearch": "Buscar:",
+              "sUrl": "",
+              "sInfoThousands": ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+            }
+          });
+        });
+    </script>
+
+  </body>
+
+</html>

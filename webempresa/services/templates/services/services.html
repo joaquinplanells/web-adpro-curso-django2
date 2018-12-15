@@ -1,0 +1,95 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+
+{% block title %}Servicios{% endblock %}
+
+{% block content %}
+
+  {% for service in services %}
+    <section class="page-section">
+      <div class="container">
+        <div class="product-item">
+          <div class="product-item-title d-flex">
+            <div class="bg-faded p-5 d-flex mr-auto rounded">
+              <h2 class="section-heading mb-0">
+                <span class="section-heading-upper"> {{service.subtitle}} </span>
+                <span class="section-heading-lower">{{service.title}}</span>
+                <span class="section-heading-lower">{{service.nota}}</span>
+              </h2>
+            </div>
+          </div>
+          <img class="product-item-img mx-auto d-flex rounded img-fluid mb-3 mb-lg-0" src="{{service.image.url}}" alt="">
+          <div class="product-item-description d-flex ml-auto">
+            <div class="bg-faded p-5 rounded">
+              <p class="mb-0"> {{service.content}} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% endfor %}
+
+
+  <section class="page-section about-heading">
+    <div class="container">
+      <div class="about-heading-content mbtm">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 mx-auto">
+            <div class="bg-faded rounded p-5 forced">
+              <div class="card text-left">
+                <div class="card-header">
+                  <h3>Tablas dinámicas con datatable</h3>
+                </div>
+                <div class="card-body">
+                  <span class="btn btn-primary">Agregar nuevo <span class="fa fa-plus-circle"></span> </span>
+                  <hr>
+                  <div class="section-content">
+                    <table class="table table-hover table-condensed table-bordered AllDataTables" style="width:100%">
+                      <thead>
+                        <tr>
+                          <th>Id</th>
+                          <th>Titulo</th>
+                          <th>Subtítulo</th>
+                          <th>Nota</th>
+                          <th>Contenido</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+
+                        {% for service in services %}
+                        <tr>
+                          <td>{{service.id}}</td>
+                          <td>{{service.title}}</td>
+                          <td>{{service.subtitle}}</td>
+                          <td>{{service.nota}}</td>
+                          <td>{{service.content}}</td>
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="card-footer text-muted">
+                  By Joaquin Planells Fons
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
